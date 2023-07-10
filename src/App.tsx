@@ -9,6 +9,7 @@ interface Joke {
 
 function App() {
   const [joke, setJoke] = useState<Joke>();
+  const [jokeRequest, setJokeRequest]=useState<boolean>(true)
 
   useEffect(() => {
     const fetchJoke = async () => {
@@ -20,7 +21,7 @@ function App() {
     };
 
     fetchJoke();
-  }, []);
+  }, [jokeRequest]);
 
   // useEffect(() => {
   //   fetch("https://jokestemp.neillbogie.repl.co/jokes/general/random")
@@ -46,6 +47,8 @@ function App() {
           </p>
           <p>
             <i>{joke.punchline}</i>
+            {" "}
+            <button onClick={() => jokeRequest? setJokeRequest(false):setJokeRequest(true)}>Get a New Joke</button>
           </p>
         </>
       )}
